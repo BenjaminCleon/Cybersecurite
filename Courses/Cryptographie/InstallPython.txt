@@ -1,0 +1,6 @@
+To install python on your machine, you can go on this website
+https://www.python.org/downloads/
+
+Click on Download Python <number_version>
+Next launch the executable file
+Follow the instruction and add to your path at the end ofd the installation python
