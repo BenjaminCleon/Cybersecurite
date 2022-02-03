@@ -10,7 +10,6 @@
 # else you can use bytes_to_long from the api Cryptodrome
 # to revert use long_to_bytes from the api Cryptodrome
 
-
 from Crypto.Util.number import *
 
 print(int.from_bytes(b'Well played', 'big'))
