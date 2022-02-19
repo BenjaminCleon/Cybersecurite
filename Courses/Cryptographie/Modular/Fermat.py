@@ -17,3 +17,4 @@ from math import gcd
 
 if ( gcd(273246787654,65537) == 1 ):
     print(1)
+    print(5)
