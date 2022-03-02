@@ -1,29 +1,70 @@
-Litteraly copy and paste from Cryptohack
+What exactly is AES??
 
-If a block cipher is secure, there should be no way for an attacker to distinguish the output of AES from a random permutation of bits.
-Furthermore, there should be no better way to undo the permutation than simply bruteforcing every possible key.
-That's why academics consider a cipher theoretically "broken" if they can find an attack that takes fewer steps to perform than
-bruteforcing the key, even if that attack is practically infeasible.
+AES is an acronym for Advandced Encryption System
+It's a method to encrypt data which inherits from DES ( Data Encrypted System )
 
-Here's an overview of the phases of AES encryption:
+AES is a block cypher encryption, that's mean that your text is split into block ( of bytes )and each block are encrypted
 
-diagram showing AES rounds
+If I have a message like this "Welcome to this course about AES". I'm going to split this sentences into block of 16 bytes like this.
+1st block "Welcome to this " and 2nd block "course about AES". Obviously, it will be the hex or the binary representation that must be used.
+But why I took 16 bytes and not other length ?
+Because AES must be use with a fix length and there are three common lengths which are used for AES.
 
-1. KeyExpansion or Key Schedule
+There are :
+ - AES-128 which means that cipher length block is 128 bits so 16 bytes. 
+ - AES-192 which means that cipher length block is 192 bits so 24 bytes. 
+ - AES-256 which means that cipher length block is 256 bits so 32 bytes.
 
- From the 128 bit key, 11 separate 128 bit "round keys" are derived: one to be used in each AddRoundKey step.
+Bigger the length is, bigger the security is but bigger the time to decrypt is too.
 
-2. Initial key addition
+So what about the steps of AES. 
 
- AddRoundKey - the bytes of the first round key are XOR'd with the bytes of the state.
+There are 3 steps in AES.
+1. AddRoundKey
+2. Repeat 9 times 4 operations
+3. Repeat a last time 3 among the 4 previous operations
 
-3. Round - this phase is looped 10 times, for 9 main rounds plus one "final round"
+Let's look about the 2nd step.
 
- a) SubBytes - each byte of the state is substituted for a different byte according to a lookup table ("S-box").
+We have into this steps, 4 operations which called:
+1. SubBytes
+2. ShiftRows
+3. MixColumns
+4. AddRoundKey
 
- b) ShiftRows - the last three rows of the state matrix are transposed—shifted over a column or two or three.
+SubBytes it's an operation which consist to take a correspondences table called S-BOX and permute the value of each byte into the cipher block
+Let's take our first previous block and convert him into hex notation
+So "Welcome to this " => "57656c636f6d6520746f207468697320".
+Now let's present such as a matrix 4x4
+[ 57, 65, 6c, 63 ]
+[ 6f, 6d, 65, 20 ]
+[ 74, 6f, 20, 74 ]
+[ 68, 69, 73, 20 ]
+Now let's do the SubBytes opeartion in according to the S-BOX that I downloaded on the web and which is in this folder.
+[ 5b, 4d, 50, aa ]
+[ a8, 6c, 4d, b7 ]
+[ 92, a8, b7, 92 ]
+[ 45, f9, 8f, b7 ]
 
- c) MixColumns - matrix multiplication is performed on the columns of the state, combining the four bytes in each column. This is skipped in the final round.
+Okay, now let's go to the next operation
 
- d) AddRoundKey - the bytes of the current round key are XOR'd with the bytes of the state.
+ShiftRows it's an easy operation which consists to permute the cases from the right to the left, begin by the first case of each row and rotating as much as the line number
+[ 5b, 4d, 50, aa ] x 0 ==> [ 5b, 4d, 50, aa ] x 0
+[ a8, 6c, 4d, b7 ] x 1 ==> [ 6c, 4d, b7, a8 ] x 1
+[ 92, a8, b7, 92 ] x 2 ==> [ b7, 92, 92, a8 ] x 2
+[ 45, f9, 8f, b7 ] x 3 ==> [ b7, 45, f9, 8f ] x 3
 
+Now MixColumns
+MixColums represents the multiplcation between each colums and a given matric which is:
+[02, 03, 01, 01]
+[01, 02, 03, 01]
+[01, 01, 02, 03]
+[03, 01, 01, 02]
+
+So we will do the next operation for the first row and repeat them for each row
+[02, 03, 01, 01]    [ 5b ]
+[01, 02, 03, 01]  X [ 6c ]
+[01, 01, 02, 03]    [ b7 ]
+[03, 01, 01, 02]    [ b7 ]
+
+So our block will become
