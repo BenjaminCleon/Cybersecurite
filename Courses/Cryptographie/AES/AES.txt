@@ -17,7 +17,7 @@ There are :
 
 Bigger the length is, bigger the security is but bigger the time to decrypt is too.
 
-So what about the steps of AES.
+So what about the steps of AES. 
 
 There are 3 steps in AES.
 1. AddRoundKey
