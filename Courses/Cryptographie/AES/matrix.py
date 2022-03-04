@@ -6,6 +6,8 @@ def matrix2bytes(matrix):
     """ Converts a 4x4 matrix into a 16-byte array.  """
     return bytes(sum(matrix, []))
 
+
+
 matrix = [
     [99, 114, 121, 112],
     [116, 111, 123, 105],

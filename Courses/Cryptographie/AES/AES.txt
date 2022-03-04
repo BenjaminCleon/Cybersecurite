@@ -62,9 +62,14 @@ MixColums represents the multiplcation between each colums and a given matric wh
 [03, 01, 01, 02]
 
 So we will do the next operation for the first row and repeat them for each row
-[02, 03, 01, 01]    [ 5b ]
-[01, 02, 03, 01]  X [ 6c ]
-[01, 01, 02, 03]    [ b7 ]
-[03, 01, 01, 02]    [ b7 ]
+[02, 03, 01, 01]    [ 5b, 4d, 50, aa ]
+[01, 02, 03, 01]  X [ 6c, 4d, b7, a8 ]
+[01, 01, 02, 03]    [ b7, 92, 92, a8 ]
+[03, 01, 01, 02]    [ b7, 45, f9, 8f ]
 
-So our block will become
+But there is another thing to take in count and it's hard to explain by writing.
+I found this video which may help you to understand.
+https://www.youtube.com/watch?v=JWJXCWt-fJo
+
+
+
